@@ -2,6 +2,7 @@
 
 import http from 'http' // Ya viene en node
 import api from './api.js';
+import './config/database.js'
 
 const server = http.createServer(api); //Crea el server con la api
 
@@ -11,3 +12,4 @@ server.on('listening', () => {
 
 server.listen(8080); //Ya creado, en qué puerto escucha?
 
+"node --env-file=.env server.js"
