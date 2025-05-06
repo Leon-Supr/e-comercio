@@ -21,7 +21,7 @@ const productSchema = new Schema({
         default: 0
     },
     user: {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId, //Hace referencia a un tipo object id
         required: true,
         ref: 'User', //En qué modelo buscar un registro con ese id
     }
