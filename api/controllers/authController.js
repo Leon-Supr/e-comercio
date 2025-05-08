@@ -8,7 +8,9 @@ const register = async (req, res) => {
         req.body.password = password //Se modifica en body
         const user = await User.create(req.body); //Guardamos
 
-        res.status(200).json({ message: "Usuario creado", user })
+        user.password = undefined;
+
+        res.status(201).json({ message: "Usuario creado", user });
     }
     catch (error) {
         console.error(error);
@@ -29,7 +31,7 @@ const login = async (req, res) => {
 
         if (!user) {
             return res.status(404).json({
-                message: "No user found"
+                message: "User not found"
             })
         }
 
@@ -42,8 +44,9 @@ const login = async (req, res) => {
 
         //Crear un token y mandarlo al usuario
         const payload = {
-
+            userId: user.id
         }
+
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: '2h'
         })
