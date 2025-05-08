@@ -11,5 +11,3 @@ server.on('listening', () => {
 }) //Cuando ocurra el evento listening, se ejecutará el callback
 
 server.listen(8080); //Ya creado, en qué puerto escucha?
-
-"node --env-file=.env server.js"
