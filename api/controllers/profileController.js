@@ -7,14 +7,13 @@ const getProfile = async (req, res) => {
         const user = await User.findById(req.userId).select("-password");
 
         return res.json({
-            user
+            user,
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({
             message: 'Error al obtener datos de perfil'
         })
-
     }
 }
 
@@ -23,6 +22,7 @@ const updateProfile = async (req, res) => {
         const user = await User.findByIdAndUpdate(req.userId, req.body, {
             new: true
         }).select("-password");
+        
         return res.json({
             user
         })

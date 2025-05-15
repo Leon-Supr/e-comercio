@@ -1,12 +1,17 @@
 // Define rutas y lógica
-
+import 'dotenv/config'; // Ahora sí lee mi .env
 import express from "express";
 
 import authRouter from "./routes/authRouter.js";
 import profileRouter from "./routes/profileRouter.js";
 import productRouter from "./routes/productRouter.js";
+import cors from "cors";
 
-const api = new express();
+const api = express();
+
+//Cargar middlewares de configuración
+api.use(cors());
+
 api.use(express.json());
 
 api.get('/', (req, res) => { // .get(ruta, handler)
@@ -17,7 +22,7 @@ api.get('/', (req, res) => { // .get(ruta, handler)
 
 // Registrar todas las rutas que habíamos planteado
 api.use('/api/auth', authRouter) //Agrupar rutas con mismo prefijo
-api.use('/api/profile', profileRouter) 
-api.use('/api/products', productRouter) 
+api.use('/api/profile', profileRouter)
+api.use('/api/products', productRouter)
 
 export default api 

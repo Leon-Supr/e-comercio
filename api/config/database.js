@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 mongoose.connect(process.env.MONGO_URI); // se conecta mediante la uri de mongo
 

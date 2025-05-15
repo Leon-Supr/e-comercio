@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 const isAuthenticated = (req, res, next) => {
     // Que tenga token la petición
     const token = req.headers.authorization;
+    
     if (!token) {
         return res.status(401).json({
             message: "Missing token"

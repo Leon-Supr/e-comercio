@@ -22,10 +22,15 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const { email, phone, username, password } = req.body;
+        const { credential, password } = req.body;
+
+        console.log(credential, password);
+
         const user = await User.findOne({
             $or: [
-                { email }, { phone }, { username }
+                { email: credential },
+                { phone: credential },
+                { username: credential }
             ]
         });
 
@@ -42,7 +47,7 @@ const login = async (req, res) => {
             })
         }
 
-        //Crear un token y mandarlo al usuario
+        //Crear un token y mandarlo al cliente
         const payload = {
             userId: user.id
         }
@@ -53,7 +58,7 @@ const login = async (req, res) => {
 
         res.json({
             token,
-        }) //El status default es 200
+        }) //El status default es 200, no hace falta ponerlo
 
     } catch (error) {
         console.error(error);
